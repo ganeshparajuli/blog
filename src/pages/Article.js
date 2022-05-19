@@ -4,9 +4,12 @@ import Articles from "../components/Articles";
 import NotFound from "./NotFound";
 import CommentsList from "../components/CommentsList";
 import AddCommetForm from "../components/AddCommentForm";
+import { useParams } from 'react-router-dom';
+
 
 const Article = ({ match }) => {
-  const name = match.params.name;
+  // const name = match.params.name;
+  const {name} = useParams();
   const article = articleContent.find((article) => article.name === name);
 
   const [articleInfo, setArticleInfo] = useState({ comments: [] });
@@ -15,7 +18,7 @@ const Article = ({ match }) => {
     const fetchData = async () => {
       const result = await fetch(`/api/articles/${name}`);
       const body = await result.json();
-      console.log(body);
+      console.log("MIG33",body);
       setArticleInfo(body);
     };
     fetchData();
